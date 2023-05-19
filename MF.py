@@ -17,7 +17,7 @@ def matched_filter(signal, template):
 t = torch.linspace(0, 1, 1000)  # 时间轴
 signal = torch.sin(2 * np.pi * 10 * t)
 signal = signal + np.random.normal(loc=0,scale=1,size=(len(signal))).astype(np.float32) # 加上一个噪声
-template = torch.sin(2 * np.pi * 10 * t[:100])  # 模板信号
+template = signal[:100]
 
 # 使用匹配滤波器进行信号处理
 correlation_result = matched_filter(signal, template)

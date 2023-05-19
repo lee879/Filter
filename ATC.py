@@ -15,12 +15,9 @@ def generate_noisy_sine_wave(num_samples, amplitude, frequency, noise_std):
     noisy_signal = (clean_signal + noise)
     return noisy_signal
 
-
-
 def atc_diffusion_lms(input_signal, desired_signal, tap_length, num_users, num_iterations, step_size):
     # 初始化每个用户的滤波器权重
     filter_weights = torch.zeros((num_users, tap_length), dtype=torch.float32)
-
 
     for _ in range(num_iterations):
         # 每个用户的信道估计
