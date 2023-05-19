@@ -15,9 +15,10 @@ def matched_filter(signal, template):
 
 # 生成正弦信号和模板
 t = torch.linspace(0, 1, 1000)  # 时间轴
-signal = torch.sin(2 * np.pi * 10 * t)
-signal = signal + np.random.normal(loc=0,scale=1,size=(len(signal))).astype(np.float32) # 加上一个噪声
-template = signal[:150]
+signal1 = torch.sin(2 * np.pi * 10 * t)
+signal = signal1 + np.random.normal(loc=0,scale=1,size=(len(signal1))).astype(np.float32) # 加上一个噪声
+#template = signal[:100]
+template = torch.sin(2 * np.pi * 10 * (t[100:200] - t[100])).flip(0) #采样翻转平移后的数据
 
 # 使用匹配滤波器进行信号处理
 correlation_result = matched_filter(signal, template)
@@ -28,11 +29,13 @@ correlation_result = matched_filter(signal, template)
 # 绘制信号和相关性结果
 plt.figure(figsize=(12, 4))
 plt.subplot(2, 1, 1)
-plt.plot(t, signal.numpy(), label='Signal')
-plt.plot(t[:150], template.numpy(), label='Template')
+plt.plot(t, signal.numpy(), label='Signal_Noise')
+plt.plot(t,signal1.numpy(),label="Signal")
+plt.plot(t[:100], template.numpy(), label='Template')
 plt.xlabel('Time')
 plt.ylabel('Amplitude')
 plt.legend()
+
 
 t_corr = torch.linspace(0, 1, len(correlation_result))  # 更新时间轴
 plt.subplot(2, 1, 2)
