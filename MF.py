@@ -23,7 +23,7 @@ template = signal[:150]
 correlation_result = matched_filter(signal, template)
 
 # 裁剪相关性结果与时间轴的长度一致
-correlation_result = correlation_result[:len(signal)-len(template)+1]
+#correlation_result = correlation_result[:len(signal)-len(template)+1]
 
 # 绘制信号和相关性结果
 plt.figure(figsize=(12, 4))
