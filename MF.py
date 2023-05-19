@@ -17,7 +17,7 @@ def matched_filter(signal, template):
 t = torch.linspace(0, 1, 1000)  # 时间轴
 signal = torch.sin(2 * np.pi * 10 * t)
 signal = signal + np.random.normal(loc=0,scale=1,size=(len(signal))).astype(np.float32) # 加上一个噪声
-template = signal[:200]
+template = signal[:150]
 
 # 使用匹配滤波器进行信号处理
 correlation_result = matched_filter(signal, template)
@@ -29,7 +29,7 @@ correlation_result = correlation_result[:len(signal)-len(template)+1]
 plt.figure(figsize=(12, 4))
 plt.subplot(2, 1, 1)
 plt.plot(t, signal.numpy(), label='Signal')
-plt.plot(t[:200], template.numpy(), label='Template')
+plt.plot(t[:150], template.numpy(), label='Template')
 plt.xlabel('Time')
 plt.ylabel('Amplitude')
 plt.legend()
