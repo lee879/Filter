@@ -31,7 +31,7 @@ frequency = 0.1
 phase = 0.0
 noise_std = 1
 num_samples = 1000
-filter_order = 1000
+filter_order = 10
 
 # 生成带有高斯噪声的正弦函数
 noisy_signal = torch.from_numpy(generate_noisy_sine_wave(num_samples, amplitude, frequency, noise_std)).type(torch.float32)
