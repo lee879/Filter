@@ -31,7 +31,7 @@ frequency = 0.1
 phase = 0.0
 noise_std = 1
 num_samples = 1000
-filter_order = 50
+filter_order = 1000
 
 # 生成带有高斯噪声的正弦函数
 noisy_signal = torch.from_numpy(generate_noisy_sine_wave(num_samples, amplitude, frequency, noise_std)).type(torch.float32)
@@ -42,10 +42,10 @@ wiener_filter = WienerFilter(filter_order)
 
 # 定义损失函数和优化器
 criterion = nn.MSELoss()
-optimizer = optim.Adam(wiener_filter.parameters(), lr=0.001)
+optimizer = optim.Adam(wiener_filter.parameters(), lr=0.0001)
 
 # 训练模型
-num_epochs = 100000
+num_epochs = 1000000
 for epoch in range(num_epochs):
     filtered_signal = wiener_filter(noisy_signal)
     loss = criterion(filtered_signal, expect_signal)
